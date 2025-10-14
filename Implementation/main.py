@@ -2,7 +2,7 @@ import unittest
 import time
 from io import StringIO
 
-from tests import test_modular_big, test_poly, test_ntt, test_cfft
+from tests import test_modular_big, test_poly, test_ntt, test_cfft, test_rng_hash
 
 
 def run_tests_with_timing(test):
@@ -36,6 +36,9 @@ def main():
 
     # print(f'============================== TEST NTT ==========================')
     # run_tests_with_timing(test_cfft)
+
+    print(f'============================== TEST RNG AND HASHING ==========================')
+    run_tests_with_timing(test_rng_hash)
 
 if __name__ == "__main__":
     main()
