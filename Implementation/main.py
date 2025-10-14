@@ -1,38 +1,38 @@
-import time
 import unittest
-import sys
+import time
+from io import StringIO
 
-from tests import test_modular_big, test_poly
+from tests import test_modular_big, test_poly, test_ntt
 
 
-def run_tests_with_timing(test_module) -> bool:
+def run_tests_with_timing(test):
     loader = unittest.TestLoader()
-    suite = loader.loadTestsFromModule(test_module)
+    suite = loader.loadTestsFromModule(test)
 
-    print(f"\n===== Running {test_module.__name__} =====")
-    start = time.perf_counter()
+    result_stream = StringIO()
+    runner = unittest.TextTestRunner(stream=result_stream, verbosity=2)
 
-    runner = unittest.TextTestRunner(stream=sys.stdout, verbosity=2, buffer=True)
+    start_time = time.perf_counter()
     result = runner.run(suite)
+    total_time = (time.perf_counter() - start_time) * 1000
 
-    elapsed_ms = (time.perf_counter() - start) * 1000.0
+    print(result_stream.getvalue())
     print("=" * 70)
     print(f"Complete {result.testsRun} tests")
-    print(f"Failures: {len(result.failures)}  Errors: {len(result.errors)}  Skipped: {len(result.skipped)}")
-    print(f"Total execution time: {elapsed_ms:.3f} ms")
+    print(f"Failed: {len(result.failures) + len(result.errors)}")
+    print(f"Total execution time: {total_time:.3f} ms")
     print("=" * 70)
-    return result.wasSuccessful()
 
 
 def main():
-    ok = True
+    # print(f'============================== TEST BIG MODULAR OPERATIONS ==========================')
+    # run_tests_with_timing(test_modular_big)
 
-    # ok &= run_tests_with_timing(test_modular_big)
+    # print(f'============================== TEST POLYNOM OPERATIONS ==========================')
+    # run_tests_with_timing(test_poly)
 
-    ok &= run_tests_with_timing(test_poly)
-
-    raise SystemExit(0 if ok else 1)
-
+    print(f'============================== TEST NTT ==========================')
+    run_tests_with_timing(test_ntt)
 
 if __name__ == "__main__":
     main()
