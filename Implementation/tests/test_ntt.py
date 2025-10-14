@@ -1,6 +1,6 @@
 import unittest
 import random
-import ntt as ntt
+import ntt
 from poly import Poly
 
 

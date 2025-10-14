@@ -1,4 +1,3 @@
-from __future__ import annotations
 from typing import List
 
 from modular import add_mod, sub_mod, mul_mod, inv_mod

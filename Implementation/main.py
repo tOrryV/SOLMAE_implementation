@@ -2,7 +2,7 @@ import unittest
 import time
 from io import StringIO
 
-from tests import test_modular_big, test_poly, test_ntt
+from tests import test_modular_big, test_poly, test_ntt, test_cfft
 
 
 def run_tests_with_timing(test):
@@ -31,8 +31,11 @@ def main():
     # print(f'============================== TEST POLYNOM OPERATIONS ==========================')
     # run_tests_with_timing(test_poly)
 
-    print(f'============================== TEST NTT ==========================')
-    run_tests_with_timing(test_ntt)
+    # print(f'============================== TEST NTT ==========================')
+    # run_tests_with_timing(test_ntt)
+
+    # print(f'============================== TEST NTT ==========================')
+    # run_tests_with_timing(test_cfft)
 
 if __name__ == "__main__":
     main()
