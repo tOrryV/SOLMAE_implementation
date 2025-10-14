@@ -21,5 +21,5 @@ def inv_mod(num1, mod):
         t, new_t = new_t, t - qout * new_t
         r, new_r = new_r, r - qout * new_r
     if r != 1:
-        raise ValueError("inv_mod: a не має оберненого елемента")
+        raise ValueError("inv_mod: a does not have an inverse element")
     return t % mod

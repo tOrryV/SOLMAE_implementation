@@ -1,31 +1,38 @@
-import unittest
 import time
-from io import StringIO
+import unittest
+import sys
 
-from tests import test_modular_big
+from tests import test_modular_big, test_poly
 
 
-def run_tests_with_timing(test):
+def run_tests_with_timing(test_module) -> bool:
     loader = unittest.TestLoader()
-    suite = loader.loadTestsFromModule(test)
+    suite = loader.loadTestsFromModule(test_module)
 
-    result_stream = StringIO()
-    runner = unittest.TextTestRunner(stream=result_stream, verbosity=2)
+    print(f"\n===== Running {test_module.__name__} =====")
+    start = time.perf_counter()
 
-    start_time = time.perf_counter()
+    runner = unittest.TextTestRunner(stream=sys.stdout, verbosity=2, buffer=True)
     result = runner.run(suite)
-    total_time = (time.perf_counter() - start_time) * 1000
 
-    print(result_stream.getvalue())
+    elapsed_ms = (time.perf_counter() - start) * 1000.0
     print("=" * 70)
     print(f"Complete {result.testsRun} tests")
-    print(f"Failed: {len(result.failures) + len(result.errors)}")
-    print(f"Total execution time: {total_time:.3f} ms")
+    print(f"Failures: {len(result.failures)}  Errors: {len(result.errors)}  Skipped: {len(result.skipped)}")
+    print(f"Total execution time: {elapsed_ms:.3f} ms")
     print("=" * 70)
+    return result.wasSuccessful()
 
 
 def main():
-    run_tests_with_timing(test_modular_big)
+    ok = True
+
+    # ok &= run_tests_with_timing(test_modular_big)
+
+    ok &= run_tests_with_timing(test_poly)
+
+    raise SystemExit(0 if ok else 1)
+
 
 if __name__ == "__main__":
     main()
