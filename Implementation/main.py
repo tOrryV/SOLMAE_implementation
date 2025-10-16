@@ -2,7 +2,7 @@ import unittest
 import time
 from io import StringIO
 
-from tests import test_modular_big, test_poly, test_ntt, test_cfft, test_rng_hash
+from tests import test_modular_big, test_poly, test_ntt, test_cfft, test_rng_hash, test_pairgen, test_unifcrown
 
 
 def run_tests_with_timing(test):
@@ -37,8 +37,14 @@ def main():
     # print(f'============================== TEST NTT ==========================')
     # run_tests_with_timing(test_cfft)
 
-    print(f'============================== TEST RNG AND HASHING ==========================')
-    run_tests_with_timing(test_rng_hash)
+    # print(f'============================== TEST RNG AND HASHING ==========================')
+    # run_tests_with_timing(test_rng_hash)
+
+    # print(f'============================== TEST PAIRGEN ==========================')
+    # run_tests_with_timing(test_pairgen)
+
+    print(f'============================== TEST UNIFCROWN ==========================')
+    run_tests_with_timing(test_unifcrown)
 
 if __name__ == "__main__":
     main()
