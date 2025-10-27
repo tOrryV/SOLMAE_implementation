@@ -1,7 +1,8 @@
 import unittest
 import time
 from io import StringIO
-from tests import test_modular_big, test_poly, test_ntt, test_cfft, test_rng_hash, test_pairgen, test_unifcrown, test_ntrusolve
+from tests import (test_modular_big, test_poly, test_ntt, test_cfft, test_rng_hash, test_pairgen, test_unifcrown,
+                   test_ntrusolve, test_sample_precomp)
 
 
 def run_tests_with_timing(test):
@@ -45,8 +46,11 @@ def main():
     # print(f'============================== TEST UNIFCROWN ==========================')
     # run_tests_with_timing(test_unifcrown)
 
-    print(f'============================== TEST NTRUSOLVE ==========================')
-    run_tests_with_timing(test_ntrusolve)
+    # print(f'============================== TEST NTRUSOLVE ==========================')
+    # run_tests_with_timing(test_ntrusolve)
+
+    print(f'============================== TEST SAMPLE PRECOMPUTATION ==========================')
+    run_tests_with_timing(test_sample_precomp)
 
 if __name__ == "__main__":
     main()
