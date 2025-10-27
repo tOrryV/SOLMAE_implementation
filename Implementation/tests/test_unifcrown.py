@@ -1,7 +1,6 @@
 import math
 import unittest
 import random
-import time
 
 from poly import Poly
 from unifcrown import uniform_poly, uniform_pair, crown_sample, crown_pair
