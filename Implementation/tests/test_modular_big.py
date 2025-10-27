@@ -1,7 +1,6 @@
 import unittest
 import random
 import math
-
 import modular as mod
 
 PRIME_61 = (1 << 61) - 1                   # 2^61 - 1
