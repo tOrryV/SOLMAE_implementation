@@ -164,3 +164,14 @@ def poly_mul_rq_ntt(num1, num2, mod, deg):
     tw_fwd, tw_inv = precompute_twists(mod, deg, psi)
 
     return negacyclic_convolution(num1, num2, mod, roots, roots_inv, bitrev, tw_fwd, tw_inv)
+
+
+def ntt(a, mod, roots, bitrev):
+    a2 = list(a)
+    ntt_inplace(a2, mod, roots, bitrev)
+    return a2
+
+def intt(a, mod, roots_inv, bitrev):
+    a2 = list(a)
+    intt_inplace(a2, mod, roots_inv, bitrev)
+    return a2
