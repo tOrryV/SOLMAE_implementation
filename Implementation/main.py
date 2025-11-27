@@ -2,7 +2,7 @@ import unittest
 import time
 from io import StringIO
 from tests import (test_modular_big, test_poly, test_ntt, test_cfft, test_rng_hash, test_pairgen, test_unifcrown,
-                   test_ntrusolve, test_sample_precomp, test_samplers, test_comp_decomp)
+                   test_ntrusolve, test_sample_precomp, test_samplers, test_comp_decomp, test_algoritm_solmae)
 
 
 def run_tests_with_timing(test):
@@ -25,38 +25,42 @@ def run_tests_with_timing(test):
 
 
 def main():
-    # print(f'============================== TEST BIG MODULAR OPERATIONS ==========================')
-    # run_tests_with_timing(test_modular_big)
+    print(f'============================== TEST BIG MODULAR OPERATIONS ==========================')
+    run_tests_with_timing(test_modular_big)
 
-    # print(f'============================== TEST POLYNOM OPERATIONS ==========================')
-    # run_tests_with_timing(test_poly)
+    print(f'============================== TEST POLYNOM OPERATIONS ==========================')
+    run_tests_with_timing(test_poly)
 
-    # print(f'============================== TEST NTT ==========================')
-    # run_tests_with_timing(test_ntt)
+    print(f'============================== TEST NTT ==========================')
+    run_tests_with_timing(test_ntt)
 
-    # print(f'============================== TEST NTT ==========================')
-    # run_tests_with_timing(test_cfft)
+    print(f'============================== TEST NTT ==========================')
+    run_tests_with_timing(test_cfft)
 
-    # print(f'============================== TEST RNG AND HASHING ==========================')
-    # run_tests_with_timing(test_rng_hash)
+    print(f'============================== TEST RNG AND HASHING ==========================')
+    run_tests_with_timing(test_rng_hash)
 
-    # print(f'============================== TEST PAIRGEN ==========================')
-    # run_tests_with_timing(test_pairgen)
+    print(f'============================== TEST PAIRGEN ==========================')
+    run_tests_with_timing(test_pairgen)
 
-    # print(f'============================== TEST UNIFCROWN ==========================')
-    # run_tests_with_timing(test_unifcrown)
+    print(f'============================== TEST UNIFCROWN ==========================')
+    run_tests_with_timing(test_unifcrown)
 
-    # print(f'============================== TEST NTRUSOLVE ==========================')
-    # run_tests_with_timing(test_ntrusolve)
+    print(f'============================== TEST NTRUSOLVE ==========================')
+    run_tests_with_timing(test_ntrusolve)
 
-    # print(f'============================== TEST SAMPLE PRECOMPUTATION ==========================')
-    # run_tests_with_timing(test_sample_precomp)
+    print(f'============================== TEST SAMPLE PRECOMPUTATION ==========================')
+    run_tests_with_timing(test_sample_precomp)
 
-    # print(f'============================== TEST SAMPLERS ==========================')
-    # run_tests_with_timing(test_samplers)
+    print(f'============================== TEST SAMPLERS ==========================')
+    run_tests_with_timing(test_samplers)
 
     print(f'============================== TEST COMPRESS AND DECOMPRESS ==========================')
     run_tests_with_timing(test_comp_decomp)
+
+    print(f'============================== TEST SOLMAE ALGORITHM ==========================')
+    run_tests_with_timing(test_algoritm_solmae)
+
 
 if __name__ == "__main__":
     main()

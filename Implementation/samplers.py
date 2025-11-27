@@ -2,10 +2,25 @@ from __future__ import annotations
 import os, math, struct
 from sample_precomp import gaussian_cdt_build
 from cfft import hadamard_product, add_complex, sub_complex
+import hashlib
+from poly import Poly
+from params import q, n, k
+
+def expand_matrix(rho):
+    A = []
+    for i in range(k):
+        row = []
+        for j in range(k):
+            seed = hashlib.shake_256(rho + bytes([i, j])).digest(n)
+            coeffs = [b % q for b in seed]
+            row.append(Poly(coeffs))
+        A.append(row)
+    return A
 
 
 _CDT_CACHE: dict[float, object] = {}
 _BM_CACHE = None
+
 
 def _get_cdt_table(sigma, tailcut=10.0):
     key = (round(float(sigma), 12), round(float(tailcut), 2))
@@ -15,17 +30,21 @@ def _get_cdt_table(sigma, tailcut=10.0):
         _CDT_CACHE[key] = tab
     return tab
 
+
 def _rand_u64():
     return struct.unpack(">Q", os.urandom(8))[0]
 
+
 def _uniform01_from_u64(u):
     return (u + 0.5) / (1 << 64)
+
 
 def _bernoulli_exp(log_p):
     if log_p >= 0.0:
         return True
     u = _uniform01_from_u64(_rand_u64())
     return u <= math.exp(log_p)
+
 
 def _gaussian01():
     global _BM_CACHE

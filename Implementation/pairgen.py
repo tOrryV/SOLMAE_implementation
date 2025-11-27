@@ -1,4 +1,3 @@
-from typing import Tuple
 from unifcrown import uniform_poly, crown_sample
 from poly import Poly
 
