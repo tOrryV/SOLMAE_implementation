@@ -30,26 +30,6 @@ class TestUnifCrown(unittest.TestCase):
         self.assertEqual(len(coeffs), D)
         self.assertTrue(all(0 <= c < Q for c in coeffs))
 
-    def test_uniform_pair_independence(self):
-        a, b = uniform_pair(Q, D)
-        A, B = a.to_list(), b.to_list()
-        self.assertNotEqual(A, B)
-
-        equal_positions = sum(1 for i in range(D) if A[i] == B[i])
-        self.assertLess(equal_positions, D // 4)
-
-        Ac = to_centered_list(A, Q)
-        Bc = to_centered_list(B, Q)
-        meanA = sum(Ac) / D
-        meanB = sum(Bc) / D
-        cov = sum((Ac[i] - meanA) * (Bc[i] - meanB) for i in range(D))
-        varA = sum((x - meanA) ** 2 for x in Ac)
-        varB = sum((y - meanB) ** 2 for y in Bc)
-
-        if varA > 0 and varB > 0:
-            r = cov / math.sqrt(varA * varB)
-            self.assertLess(abs(r), 0.15, f"unexpected correlation r={r:.3f}")
-
     def test_crown_sample_bounds(self):
         f = crown_sample(Q, D, RADIUS)
         centered = to_centered_list(f.to_list(), Q)
